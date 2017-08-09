@@ -4,15 +4,17 @@ KERNEL := $(HOME)/src/linux/linux-stable
 
 CPP = /usr/bin/cpp
 
-DTC = /usr/bin/dtc
+DTC := $(HOME)/src/dtc/dtc
 
 CPP_FLAGS = 	-nostdinc \
 		-I$(KERNEL)/arch/arm/boot/dts \
 		-I$(KERNEL)/arch/arm/boot/dts/include \
-		-x assembler-with-cpp 
+		-x assembler-with-cpp \
+		-undef -D__DTS__
 
 DTC_FLAGS =	-i$(KERNEL)/arch/arm/boot/dts \
-		-b 0
+		-b 0 -@ \
+		-Wno-unit_address_vs_reg
 
 all: $(DTB)
 
