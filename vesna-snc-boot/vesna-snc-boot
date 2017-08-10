@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -ue
+
+if [ $# -ne 1 ]; then
+	CMD=""
+else
+	CMD=$1
+fi
+
+OPENOCD="/usr/bin/openocd -f interface/sysfsgpio-lgtc.cfg -f target/stm32f1x.cfg"
+GPIO="/sys/class/gpio/gpio116"
+
+case "$CMD" in
+	start)
+		if [ ! -d "$GPIO" ]; then
+			echo 116 > /sys/class/gpio/export
+		fi
+		echo out > "$GPIO/direction"
+		echo 1 > "$GPIO/value"
+
+		$OPENOCD -c "init; reset halt; poll; reset run; shutdown"
+		;;
+	stop)
+		$OPENOCD -c "init; reset halt; shutdown"
+
+		echo 0 > "$GPIO/value"
+		;;
+	*)
+		echo "Start/stop guest VESNA SNC board"
+		echo
+		echo "USAGE: $0 start|stop"
+		;;
+esac
