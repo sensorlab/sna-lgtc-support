@@ -1,5 +1,11 @@
 # Device Tree Source
 
+## Board versions
+
+We have device trees for these versions:
+
+ * `am335x-lgtc-wireless.dtb` - only the wireless module placed.
+
 ## Building
 
 The `dtb` that was built using these steps was tested on the `4.4.30-ti-r64` kernel
