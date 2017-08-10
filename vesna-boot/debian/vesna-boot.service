@@ -1,0 +1,13 @@
+[Unit]
+Description=Boot VESNA SNC over JTAG
+Requires=openocd.service
+After=openocd.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/openocd -f interface/sysfsgpio-bone.cfg -f target/stm32f1x.cfg -c "reset_config trst_and_srst; init; reset halt; poll; reset run; shutdown"
+ExecStop=/usr/bin/openocd -f interface/sysfsgpio-bone.cfg -f target/stm32f1x.cfg -c "reset_config trst_and_srst; init; reset halt; shutdown"
+
+[Install]
+WantedBy=multi-user.target
