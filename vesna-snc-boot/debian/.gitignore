@@ -1,0 +1,7 @@
+files
+vesna-snc-boot.debhelper.log
+vesna-snc-boot.postinst.debhelper
+vesna-snc-boot.postrm.debhelper
+vesna-snc-boot.prerm.debhelper
+vesna-snc-boot.substvars
+vesna-snc-boot

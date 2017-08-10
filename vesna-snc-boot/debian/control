@@ -1,11 +1,11 @@
-Source: vesna-boot
+Source: vesna-snc-boot
 Section: embedded
 Priority: extra
 Maintainer: Tomaz Solc <tomaz.solc@tablix.org>
 Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5)
 Standards-Version: 3.9.8
 
-Package: vesna-boot
+Package: vesna-snc-boot
 Architecture: all
 Depends: openocd, ${misc:Depends}
 Description: Boot VESNA SNC over JTAG when BeagleBone boots
