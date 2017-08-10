@@ -7,7 +7,7 @@ that ships with the `bone-debian-8.6-seeed-iot-armhf-2016-11-06-4gb.img` image.
 
 Requirements:
 
- * BeagleBoard Linux source (https://github.com/beagleboard/linux, commit 7b30d69)
+ * BeagleBoard Linux source (https://github.com/avian2/linux, branch sna-lgtc)
 
 Prepare the kernel tree (run on the top of the kernel source):
 
