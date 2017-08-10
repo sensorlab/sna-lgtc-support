@@ -1,3 +1,9 @@
+vesna-snc-boot (1.1.0-1) unstable; urgency=medium
+
+  * Changes for SNA-LGTC.
+
+ -- Tomaž Šolc <tomaz.solc@tablix.org>  Thu, 10 Aug 2017 15:52:41 +0200
+
 vesna-snc-boot (1.0.0-1) unstable; urgency=medium
 
   * First version
