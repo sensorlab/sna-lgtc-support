@@ -65,3 +65,7 @@
 &mac {
 	status = "disabled";
 };
+
+&sgx {
+	status = "okay";
+};
