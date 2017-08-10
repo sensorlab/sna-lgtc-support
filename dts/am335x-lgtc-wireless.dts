@@ -74,8 +74,4 @@
 	status = "disabled";
 };
 
-&sgx {
-	status = "okay";
-};
-
 #include "am335x-bone-pinmux-ttyS2.dtsi"
