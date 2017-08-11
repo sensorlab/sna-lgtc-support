@@ -7,3 +7,11 @@ board:
    SNC guest board after the host boots.
  * `wlconf` - Configuration for the TI WL1837 wi-fi module.
  * `bluetooth` - Using Bluetooth on WL1837.
+
+Other related repositories and documents:
+
+ * [Schematic and PCB layout](https://github.com/urbangregorc/vesna-hardware/tree/SNA-LGTC/SNA-LGTC/v1.1.0) for the SNA-LGTC board.
+ * [Patched OpenOCD](https://github.com/avian2/openocd/tree/bbblack) for programming the guest VESNA SNC board.
+ * [Instructions](https://github.com/avian2/vesna-drivers/blob/logatec-3/README.beaglebone.md)
+   for compiling, uploading and debugging firmware for the guest VESNA SNC
+   board using *vesna-drivers* from the host SNA-LGTC board.
