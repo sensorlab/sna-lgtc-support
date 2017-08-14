@@ -1,0 +1,15 @@
+This is the configuration and usage instructions for the docker daemon on BeagleBone.
+
+ * [Instalation instructions](https://docs.docker.com/engine/installation/linux/docker-ce/debian) for docker on arm.
+ 
+ * DNS setup with JSI DNS servers for docker daemon: Place the following line to `/etc/docker/daemon.json`:
+
+    `{"dns": ["193.2.4.247", "193.2.4.248"]}`
+
+ * Set permissions for docker group to use serial ports in file `/etc/udev/rules.d/60-omap-tty.rules`:
+
+    `SUBSYSTEM=="tty", ATTR{uartclk}!="0", KERNEL=="ttyS[0-9]", SYMLINK+="ttyO%n", GROUP="docker", MODE="0644"`
+
+ * Use serial device from docker container:
+
+    `docker run --device=/dev/ttyS1 ...`
