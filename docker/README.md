@@ -1,6 +1,6 @@
-This is the configuration and usage instructions for the docker daemon on BeagleBone.
+This is the configuration and usage instructions for the Docker daemon on BeagleBone.
 
- * [Instalation instructions](https://docs.docker.com/engine/installation/linux/docker-ce/debian) for docker on arm.
+ * [Instalation instructions](https://docs.docker.com/engine/installation/linux/docker-ce/debian) for Docker on ARM.
  
  * DNS setup with JSI DNS servers for docker daemon: Place the following line to `/etc/docker/daemon.json`:
 
