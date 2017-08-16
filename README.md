@@ -13,6 +13,7 @@ SNA-LGTC:
    SNC guest board after the host boots.
  * `wlconf` - Configuration for the TI WL1837 wi-fi module.
  * `bluetooth` - Using Bluetooth on WL1837.
+ * `docker` - Configuration for Docker.
  * `figures` - Photos and other figures related to the SNA-LGTC board.
 
 Other related repositories and documents:
