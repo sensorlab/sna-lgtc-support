@@ -1,5 +1,11 @@
-This repository contains various small software parts related to the SNA-LGTC
-board:
+# SNA-LGTC
+
+![Photo of the SNA-LGTC board](figures/sna-lgtc.jpg)
+
+SNA-LGTC is a small, ARM-based Linux-running computer that is capable of hosting
+microcontroller-based boards such as VESNA SNC and VESNA SNP. This repository
+contains various small software parts and documentarion related to
+SNA-LGTC:
 
  * `dts` - Device tree source.
  * `dtb` - Compiled device tree blobs.
@@ -7,6 +13,7 @@ board:
    SNC guest board after the host boots.
  * `wlconf` - Configuration for the TI WL1837 wi-fi module.
  * `bluetooth` - Using Bluetooth on WL1837.
+ * `figures` - Photos and other figures related to the SNA-LGTC board.
 
 Other related repositories and documents:
 
