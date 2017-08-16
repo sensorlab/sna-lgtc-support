@@ -6,10 +6,6 @@ This is the configuration and usage instructions for the docker daemon on Beagle
 
     `{"dns": ["193.2.4.247", "193.2.4.248"]}`
 
- * Set permissions for docker group to use serial ports in file `/etc/udev/rules.d/60-omap-tty.rules`:
-
-    `SUBSYSTEM=="tty", ATTR{uartclk}!="0", KERNEL=="ttyS[0-9]", SYMLINK+="ttyO%n", GROUP="docker", MODE="0644"`
-
  * Use serial device from docker container:
 
     `docker run --device=/dev/ttyS1 ...`
