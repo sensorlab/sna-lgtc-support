@@ -7,7 +7,7 @@ board:
    SNC guest board after the host boots.
  * `wlconf` - Configuration for the TI WL1837 wi-fi module.
  * `bluetooth` - Using Bluetooth on WL1837.
- * `docker` - Configuration for docker.
+ * `docker` - Configuration for Docker.
 
 Other related repositories and documents:
 
