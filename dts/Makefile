@@ -1,4 +1,5 @@
-DTB = am335x-lgtc-wireless.dtb
+DTB = am335x-lgtc-wireless.dtb \
+      am335x-lgtc-wired.dtb
 
 KERNEL := $(HOME)/src/linux/linux-stable
 
