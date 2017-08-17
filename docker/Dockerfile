@@ -17,7 +17,6 @@ RUN apt-get install -y gcc-arm-none-eabi
 RUN apt-get install -y gdb-arm-none-eabi
 RUN apt-get install -y libnewlib-arm-none-eabi
 RUN apt-get install -y devscripts
-RUN apt-get install -y dpkg-dev
 
 # Install dependences for vesna management system
 RUN apt-get install -y default-jdk
