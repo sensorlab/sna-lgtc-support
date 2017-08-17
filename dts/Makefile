@@ -20,22 +20,15 @@ DTC_FLAGS =	-i$(KERNEL)/arch/arm/boot/dts \
 
 all: $(DTB)
 
-%.dts.tmp: %.dts
-	$(CPP) $(CPP_FLAGS) -o $@ $<
+-include $(DTB:.dtb=.d)
 
-%.dtb: %.dts.tmp
-	$(DTC) $(DTC_FLAGS) -O dtb -o $@ $<
-
-%.d: %.dts
-	$(CPP) $(CPP_FLAGS) -Wp,-MD,$@.pre.tmp -o $(patsubst %.d,%.dts.tmp,$@) $<
-	$(DTC) $(DTC_FLAGS) -d $@.dtc.tmp -O dtb -o /dev/null $(patsubst %.d,%.dts.tmp,$@)
-	sed -e 's/^.*:/$(patsubst %.d,%.dts.tmp,$@):/' $@.pre.tmp > $@
-	sed -e 's/^.*:/$(patsubst %.d,%.dtb,$@):/' $@.dtc.tmp >> $@
-	rm $@.pre.tmp $@.dtc.tmp $(patsubst %.d,%.dts.tmp,$@)
+%.dtb: %.dts
+	$(CPP) $(CPP_FLAGS) -Wp,-MD,$<.pre.d -o $<.pre $<
+	$(DTC) $(DTC_FLAGS) -d $<.dtc.d -O dtb -o $@ $<.pre
+	sed -e 's/^.*:/$@:/;s/\.dts\.pre/.dts/g' $<.pre.d $<.dtc.d > $(@:.dtb=.d)
+	rm $<.pre.d $<.dtc.d $<.pre
 
 clean:
 	rm -f *.dtb *.dts.tmp
-
-include $(patsubst %.dtb,%.d,$(DTB))
 
 .PHONY: all clean
