@@ -23,7 +23,6 @@ RUN apt-get install -y dpkg-dev
 RUN apt-get install -y default-jdk
 RUN apt-get install -y ant
 RUN apt-get install -y librxtx-java
-RUN apt-get clean
 
 # Compile and install OpenOCD
 WORKDIR /root
@@ -33,3 +32,6 @@ RUN mk-build-deps --install -t "apt-get -y --no-install-recommends"
 RUN dpkg-buildpackage -uc -b
 WORKDIR /root
 RUN dpkg -i openocd_0.8.0-4tomaz-bbblack-2_armhf.deb
+
+# Cleanup
+RUN apt-get clean
