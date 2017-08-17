@@ -8,6 +8,7 @@ CPP = /usr/bin/cpp
 DTC := $(KERNEL)/scripts/dtc/dtc
 
 CPP_FLAGS = 	-nostdinc \
+		-I . \
 		-I$(KERNEL)/arch/arm/boot/dts \
 		-I$(KERNEL)/arch/arm/boot/dts/include \
 		-x assembler-with-cpp \
