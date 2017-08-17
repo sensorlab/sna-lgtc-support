@@ -4,7 +4,8 @@
 
 We have device trees for these versions:
 
- * `am335x-lgtc-wireless.dtb` - only the wireless module placed.
+ * `am335x-lgtc-wired.dtb` - wireless module and wired Ethernet placed (v1.1.2)
+ * `am335x-lgtc-wireless.dtb` - only the wireless module placed (v1.1.3)
 
 ## Building
 
@@ -32,3 +33,6 @@ Copy the appropriate `dtb` file into `/boot/dtbs/4.4.30-ti-r64/`. The
 example:
 
     dtb=am335x-lgtc-wireless.dtb
+
+The `dtb` file used must correspond to the board version you are using (see
+*Board versions* above) or you will encounter problems.
