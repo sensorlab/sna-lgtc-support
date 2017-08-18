@@ -1,8 +1,18 @@
 # Device Tree Source
 
+Device tree is a file that tells the Linux kernel some details on what hardware
+is attached and how to access it. Editable files must be compiled into a binary
+form and given to the bootloader.
+
+Some helpful general information on device trees:
+
+ * [Device tree usage](http://elinux.org/Device_Tree_Usage)
+ * [Device tree for dummies video](https://www.youtube.com/watch?v=uzBwHFjJ0vU)
+ * [Solving device tree issues](http://elinux.org/images/0/04/Dt_debugging_elce_2015_151006_0421.pdf)
+
 ## Board versions
 
-We have device trees for these versions:
+We have device trees for these hardware versions:
 
  * `am335x-lgtc-wired.dtb` - wireless module and wired Ethernet placed (v1.1.2)
  * `am335x-lgtc-wireless.dtb` - only the wireless module placed (v1.1.3)
@@ -28,9 +38,9 @@ Where `KERNEL` should point to the top of the kernel tree.
 
 ## Installation
 
-Copy the appropriate `dtb` file into `/boot/dtbs/4.4.30-ti-r64/`. The
-`/boot/uEnv.txt` file should contain the name of the `dtb` file to use. For
-example:
+Copy the appropriate `dtb` file into `/boot/dtbs/4.4.30-ti-r64/` on SNA-LGTC.
+Change owner to `root`. The `/boot/uEnv.txt` file should contain the name of
+the `dtb` file to use. For example:
 
     dtb=am335x-lgtc-wireless.dtb
 
