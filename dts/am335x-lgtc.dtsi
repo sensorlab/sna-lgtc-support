@@ -110,5 +110,14 @@
 	status = "okay";
 };
 
+/* Bluetooth sound interface is not connected.
+ *
+ * This prevents errors on boot regarding "davinci_evm sound" */
+/ {
+	sound {
+		status = "disabled";
+	};
+};
+
 /* VESNA SNC is connected to UART2 */
 #include "am335x-bone-pinmux-ttyS2.dtsi"
