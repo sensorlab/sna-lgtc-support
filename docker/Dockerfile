@@ -25,12 +25,12 @@ RUN apt-get install -y librxtx-java
 
 # Compile and install OpenOCD
 WORKDIR /root
-RUN git clone -b bbblack https://github.com/avian2/openocd.git
+RUN git clone -b sna-lgtc https://github.com/avian2/openocd.git
 WORKDIR /root/openocd
 RUN mk-build-deps --install -t "apt-get -y --no-install-recommends"
 RUN dpkg-buildpackage -uc -b
 WORKDIR /root
-RUN dpkg -i openocd_0.8.0-4tomaz-bbblack-2_armhf.deb
+RUN dpkg -i openocd_0.8.0-4tomaz-bbblack-4_armhf.deb
 
 # Cleanup
 RUN apt-get clean
