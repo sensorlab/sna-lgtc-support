@@ -69,4 +69,5 @@
       $ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 
 * Kill all running containers
+
       $ docker kill $(docker ps -q)
