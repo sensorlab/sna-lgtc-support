@@ -26,7 +26,7 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
 
       $ sudo groupadd docker
 
-* Add your user to the docker group.
+* Add your user to the Docker group.
 
       $ sudo usermod -aG docker $USER
  
