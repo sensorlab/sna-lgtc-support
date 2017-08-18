@@ -19,7 +19,8 @@ SNA-LGTC:
 Other related repositories and documents:
 
  * [Schematic and PCB layout](https://github.com/urbangregorc/vesna-hardware/tree/SNA-LGTC/SNA-LGTC/v1.1.0) for the SNA-LGTC board.
- * [Patched OpenOCD](https://github.com/avian2/openocd/tree/bbblack) for programming the guest VESNA SNC board.
+ * [Patched OpenOCD](https://github.com/avian2/openocd/tree/sna-lgtc) for programming the guest VESNA SNC board.
  * [Instructions](https://github.com/avian2/vesna-drivers/blob/logatec-3/README.beaglebone.md)
    for compiling, uploading and debugging firmware for the guest VESNA SNC
    board using *vesna-drivers* from the host SNA-LGTC board.
+ * [NodeSpectrumSensorLocal](https://github.com/avian2/vesna-drivers/tree/logatec-3/Applications/Logatec/NodeSpectrumSensorLocal), application for controlling the SNE-ISMTV radio on the guest board using ALH protocol over the UART.
