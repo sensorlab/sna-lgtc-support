@@ -8,7 +8,7 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
 
       $ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 
-* Add docker repository.
+* Add Docker repository.
 
       $ echo "deb [arch=armhf] https://download.docker.com/linux/debian \
         $(lsb_release -cs) stable" | \
@@ -22,7 +22,7 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
 
       $ sudo apt-get install docker-ce
 
-* Create the docker group.
+* Create the Docker group.
 
       $ sudo groupadd docker
 
@@ -30,7 +30,7 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
 
       $ sudo usermod -aG docker $USER
  
-* DNS setup with JSI DNS servers for docker daemon: Place the following line to `/etc/docker/daemon.json`:
+* DNS setup with JSI DNS servers for Docker daemon: Place the following line to `/etc/docker/daemon.json`:
 
       {"dns": ["193.2.4.247", "193.2.4.248"]}
 
