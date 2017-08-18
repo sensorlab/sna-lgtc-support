@@ -48,6 +48,6 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
 
       $ docker build -t some-name .
 
-* Use serial device from Docker container:
+* Use GPIO pins and serial device from Docker container:
 
-      $ docker run --device=/dev/ttyS1 ...
+      $ docker run -v /sys/class/gpio:/sys/class/gpio --device=/dev/ttyS1 --privileged ...
