@@ -34,3 +34,8 @@ RUN dpkg -i openocd_0.8.0-4tomaz-bbblack-4_armhf.deb
 
 # Cleanup
 RUN apt-get clean
+RUN apt-get remove -y openocd-build-deps
+RUN apt-get autoremove -y
+
+RUN rm -rf /root/openocd
+RUN rm -f openocd_*.deb openocd_*.changes
