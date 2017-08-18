@@ -51,3 +51,22 @@
 * Use GPIO pins and serial device from Docker container:
 
       $ docker run -v /sys/class/gpio:/sys/class/gpio --device=/dev/ttyS1 --privileged ...
+    
+* Delete volumes
+
+      $ docker volume ls 
+      $ docker volume rm $(docker volume ls -qf dangling=true)
+
+* Remove docker containers
+
+      $ docker ps
+      $ docker ps -a
+      $ docker rm $(docker ps -qa --no-trunc --filter "status=exited")
+
+* Remove docker images
+
+      $ docker images
+      $ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+
+* Kill all running containers
+      $ docker kill $(docker ps -q)
