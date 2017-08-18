@@ -43,6 +43,10 @@ This is the [Installation manual](https://docs.docker.com/engine/installation/li
       }
 
   Here, `<path>` is path to a root-owned directory, usually on a mounted SD card.
+  
+* Build the Dockerfile in the current directory.
+
+      $ docker build -t some-name .
 
 * Use serial device from docker container:
 
