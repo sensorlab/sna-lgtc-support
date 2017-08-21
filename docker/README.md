@@ -1,4 +1,16 @@
-# Docker on ARM [Installation manual](https://docs.docker.com/engine/installation/linux/docker-ce/debian) and usage instructions
+# Running Docker
+
+`Dockerfile` in this directory builds an `vesna-tools` image that contains
+development tools for compiling and programming firmware on the guest VESNA SNC
+board from inside a Docker container.
+
+`vesna-tools` is not very useful on its own. It is meant to be used as a base for other
+container images, such as the [VESNA management system](https://github.com/matevzv/vesna-management-system).
+The image is also available on [Docker Hub](https://hub.docker.com/r/sensorlab6/vesna-tools/).
+
+## Docker ARM installation instructions
+
+Based on [Get Docker CE for Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian) from Docker Documentation.
 
 * Uninstall old versions
 
@@ -43,7 +55,9 @@
       }
 
   Here, `<path>` is path to a root-owned directory, usually on a mounted SD card.
-  
+
+## Useful Docker commands
+
 * Build the Dockerfile in the current directory.
 
       $ docker build -t some-name .
