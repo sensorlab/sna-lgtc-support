@@ -7,35 +7,35 @@ MAINTAINER Matevz Vucnik
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install common dependences
-RUN apt-get update --fix-missing
-RUN apt-get upgrade -y
-RUN apt-get install -y apt-utils
-RUN apt-get install -y git
+RUN	apt-get update --fix-missing
+RUN	apt-get upgrade -y
+RUN	apt-get install -y apt-utils git && \
+	apt-get clean -y
 
 # Install dependences for vena drivers
-RUN apt-get install -y gcc-arm-none-eabi
-RUN apt-get install -y gdb-arm-none-eabi
-RUN apt-get install -y libnewlib-arm-none-eabi
-RUN apt-get install -y devscripts
+RUN 	apt-get install -y	gcc-arm-none-eabi \
+				gdb-arm-none-eabi \
+				libnewlib-arm-none-eabi \
+				devscripts && \
+	apt-get clean -y
 
 # Install dependences for vesna management system
-RUN apt-get install -y default-jdk
-RUN apt-get install -y ant
-RUN apt-get install -y librxtx-java
+RUN	apt-get install -y	default-jdk \
+				ant \
+				librxtx-java && \
+	apt-get clean -y
 
 # Compile and install OpenOCD
 WORKDIR /root
-RUN git clone -b sna-lgtc https://github.com/avian2/openocd.git
-WORKDIR /root/openocd
-RUN mk-build-deps --install -t "apt-get -y --no-install-recommends"
-RUN dpkg-buildpackage -uc -b
-WORKDIR /root
-RUN dpkg -i openocd_0.8.0-4tomaz-bbblack-4_armhf.deb
 
-# Cleanup
-RUN apt-get clean
-RUN apt-get remove -y openocd-build-deps
-RUN apt-get autoremove -y
-
-RUN rm -rf /root/openocd
-RUN rm -f openocd_*.deb openocd_*.changes
+RUN	git clone -b sna-lgtc https://github.com/avian2/openocd.git && \
+	cd openocd && \
+	mk-build-deps --install -t "apt-get -y --no-install-recommends" && \
+	dpkg-buildpackage -uc -b && \
+	cd .. && \
+	dpkg -i openocd_*.deb && \
+	apt-get clean && \
+	apt-get remove -y openocd-build-deps && \
+	apt-get autoremove -y && \
+	rm -rf openocd && \
+	rm -f openocd_*.deb openocd_*.changes
