@@ -1,0 +1,7 @@
+files
+sna-lgtc-boot.debhelper.log
+sna-lgtc-boot.postinst.debhelper
+sna-lgtc-boot.postrm.debhelper
+sna-lgtc-boot.prerm.debhelper
+sna-lgtc-boot.substvars
+sna-lgtc-boot

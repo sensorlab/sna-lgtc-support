@@ -1,0 +1,13 @@
+Source: sna-lgtc-boot
+Section: embedded
+Priority: extra
+Maintainer: Matevz Vucnik <matevz.vucnik@ijs.si>
+Build-Depends: debhelper (>= 9), dh-systemd (>= 1.5)
+Standards-Version: 3.9.8
+
+Package: sna-lgtc-boot
+Architecture: all
+Depends: munin-node, ${misc:Depends}
+Description: Boot scripts for SNA-LGTC board
+ This package provides a systemd services for proper initialization and
+ registration of SNA-LGTC boards in Videk management system.
