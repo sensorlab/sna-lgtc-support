@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+import mmap
+import struct
+import sys
+
+# https://stackoverflow.com/questions/159137/getting-mac-address
+CONTROL_MODULE_OFFSET = 0x44E10000
+CONTROL_MODULE_SIZE = 0x00001FFF
+
+MAC_ID0_LO_OFFSET = 0x630
+MAC_ID0_HI_OFFSET = 0x634
+MAC_ID1_LO_OFFSET = 0x638
+MAC_ID1_HI_OFFSET = 0x63C
+
+def get_sitara_mac_reg(mem, off):
+	mac = (
+		mem[off+4],
+		mem[off+5],
+		mem[off+6],
+		mem[off+7],
+		mem[off+0],
+		mem[off+1],
+	)
+
+	return mac
+
+def get_sitara_mac():
+	with open("/dev/mem", "rb") as f:
+		mem = mmap.mmap(f.fileno(), CONTROL_MODULE_SIZE, offset=CONTROL_MODULE_OFFSET,
+				prot=mmap.PROT_READ)
+
+		mac_id0 = get_sitara_mac_reg(mem, MAC_ID0_LO_OFFSET)
+		mac_id1 = get_sitara_mac_reg(mem, MAC_ID1_LO_OFFSET)
+
+		mem.close()
+
+	return mac_id0, mac_id1
+
+def get_wl1837_mac():
+	with open("/sys/class/net/wlan0/address", "r") as f:
+		l = f.readline()
+
+	mac = []
+	for f in l.split(':'):
+		mac.append(int(f, 16))
+
+	return tuple(mac)
+
+def print_mac(name, mac):
+	sys.stderr.write("%s: " % name)
+	for b in mac:
+		sys.stderr.write("%02x " % b)
+	sys.stderr.write('\n')
+
+def main():
+	if len(sys.argv) > 1 and sys.argv[1] == '-v':
+		verbose = True
+	else:
+		verbose = False
+
+	mac_id0, mac_id1 = get_sitara_mac()
+	mac_id2 = get_wl1837_mac()
+
+	if verbose:
+		print_mac("Sitara MAC0", mac_id0)
+		print_mac("Sitara MAC1", mac_id1)
+		print_mac("WL1837 MAC ", mac_id2)
+
+	uid = mac_id0 + mac_id1[2:] + mac_id2
+
+	for b in uid:
+		sys.stdout.write("%02x" % b)
+	sys.stdout.write('\n')
+
+if __name__ == "__main__":
+	main()
