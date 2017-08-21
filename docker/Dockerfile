@@ -28,8 +28,13 @@ RUN	apt-get install -y	default-jdk \
 # Compile and install OpenOCD
 WORKDIR /root
 
+# "touch" commands are here to avoid occasional
+# "aclocal-1.13: command not found" errors.
+# https://stackoverflow.com/a/30386141
 RUN	git clone -b sna-lgtc https://github.com/avian2/openocd.git && \
 	cd openocd && \
+	touch configure.ac aclocal.m4 configure && \
+	find . -name Makefile.in -exec 'touch' '{}' ';' && \
 	mk-build-deps --install -t "apt-get -y --no-install-recommends" && \
 	dpkg-buildpackage -uc -b && \
 	cd .. && \
