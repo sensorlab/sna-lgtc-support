@@ -4,33 +4,33 @@ LGTC_FLASH_FILE="/etc/lgtc/lgtc-first-boot"
 
 if [ -f "$LGTC_FLASH_FILE" ] ; then
     # set machine_id
-    ID=`sna_lgtc_getid`
+    ID=`sna-lgtc-getid`
     echo "$ID" > /var/lib/dbus/machine-id
     echo "$ID" > /etc/machine-id
     
     # format SD card and add it to /etc/fstab
-    if [ ! -e /dev/mmcblk1 ]; then
+    if [ ! -e /dev/mmcblk0 ]; then
       echo "SD card not found!" 1>&2
       exit 1
     fi
 
-    echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/mmcblk1
+    echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/mmcblk0
 
     if [ $? -ne 0 ]; then
       exit 1
     else
-      mkfs.ext4 -F /dev/mmcblk1p1
+      mkfs.ext4 -F /dev/mmcblk0p1
     fi
 
     mkdir -p /media/sdcard
 
-    mount /dev/mmcblk1p1 /media/sdcard/
+    mount /dev/mmcblk0p1 /media/sdcard/
     if [ $? -ne 0 ]; then
       rmdir /media/sdcard
       exit 1
     fi
 
-    echo "/dev/mmcblk1p1    /media/sdcard    ext4    defaults,nofail    0    0" >> /etc/fstab
+    echo "/dev/mmcblk0p1    /media/sdcard    ext4    defaults,nofail    0    0" >> /etc/fstab
 
     # remove flash file
     rm "$LGTC_FLASH_FILE"
