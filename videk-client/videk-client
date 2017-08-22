@@ -6,7 +6,7 @@ import time
 import socket
 import os.path
 from datetime import datetime
-from videk_rest_client import Videk
+from videkrestclient import Videk
 
 videk_api_key = open('/etc/videk/api.key').readline().strip()
 videk = Videk("https://videk.ijs.si", videk_api_key)
