@@ -1,6 +1,6 @@
 [Unit]
 Description=Updates a node and sensors
-Wants=sna-lgtc-boot.service
+Requires=sna-lgtc-boot.service
 After=sna-lgtc-boot.service
 
 [Service]
