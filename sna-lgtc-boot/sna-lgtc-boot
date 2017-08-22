@@ -8,29 +8,37 @@ if [ -f "$LGTC_FLASH_FILE" ] ; then
     echo "$ID" > /var/lib/dbus/machine-id
     echo "$ID" > /etc/machine-id
     
+    MMC="/dev/mmcblk0"
+
+    # do not format if it is mounted
+    if grep -qs "$MMC" /proc/mounts; then
+        echo "$MMC is mounted!"
+        exit 1
+    fi
+    
     # format SD card and add it to /etc/fstab
-    if [ ! -e /dev/mmcblk0 ]; then
+    if [ ! -e "$MMC" ]; then
       echo "SD card not found!" 1>&2
       exit 1
     fi
 
-    echo -e "o\nn\np\n1\n\n\nw" | fdisk /dev/mmcblk0
+    echo -e "o\nn\np\n1\n\n\nw" | fdisk "$MMC"
 
     if [ $? -ne 0 ]; then
       exit 1
     else
-      mkfs.ext4 -F /dev/mmcblk0p1
+      mkfs.ext4 -F "$MMC"p1
     fi
 
     mkdir -p /media/sdcard
 
-    mount /dev/mmcblk0p1 /media/sdcard/
+    mount "$MMC"p1 /media/sdcard/
     if [ $? -ne 0 ]; then
       rmdir /media/sdcard
       exit 1
     fi
 
-    echo "/dev/mmcblk0p1    /media/sdcard    ext4    defaults,nofail    0    0" >> /etc/fstab
+    echo "$MMC""p1    /media/sdcard    ext4    defaults,nofail    0    0" >> /etc/fstab
 
     # remove flash file
     rm "$LGTC_FLASH_FILE"
