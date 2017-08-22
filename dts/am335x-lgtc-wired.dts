@@ -2,6 +2,10 @@
 
 #include "am335x-lgtc.dtsi"
 
+/ {
+	model = "TI AM335x SNA-LGTC Wired";
+};
+
 /* Wired Ethernet on MII1 */
 &mac {
 	status = "okay";

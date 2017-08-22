@@ -30,14 +30,13 @@
 /* #include "am33xx-pruss-uio.dtsi" */
 
 / {
-	model = "TI AM335x BeagleBone Green Wireless";
 	/*
 	NOTE: BeagleBone startup scripts in /opt/scripts read the model name
 	and do some things (such as setting up usb0 network, etc.) depending on
 	the name. So we can't change the model here without also having
 	customized scripts there.
 
-	model = "SNA-LGTC Wireless";
+	model = "TI AM335x BeagleBone Green Wireless";
 	*/
 	compatible = "ti,am335x-bone-green", "ti,am335x-bone-black", "ti,am335x-bone", "ti,am33xx";
 };
