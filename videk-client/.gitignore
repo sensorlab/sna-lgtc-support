@@ -6,5 +6,6 @@ debian/videk-client.prerm.debhelper
 debian/debhelper-build-stamp
 debian/videk-client.substvars
 debian/videk-client
+VidekClient.egg-info
 .pybuild
 build
