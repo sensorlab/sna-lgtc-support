@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LGTC_FLASH_FILE="/etc/lgtc/lgtc.flash"
+LGTC_FLASH_FILE="/etc/lgtc/lgtc-first-boot"
 
 if [ -f "$LGTC_FLASH_FILE" ] ; then
     # set machine_id
