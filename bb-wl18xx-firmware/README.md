@@ -17,3 +17,9 @@ Further reading:
 
  * [WL18xx Writing MAC address](http://processors.wiki.ti.com/index.php/WL18xx_Writing_MAC_address)
  * [WiLink Troubleshooting](http://processors.wiki.ti.com/index.php/WiLink_Troubleshooting)
+
+Based on the repository here:
+
+https://github.com/rcn-ee/repos/tree/master/bb-wl18xx-firmware/suite/jessie/debian
+
+e26517ceabc7aca524ac98ecdeb4f685a5f843a2
