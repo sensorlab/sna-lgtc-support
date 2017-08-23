@@ -1,0 +1,11 @@
+[Unit]
+Description=SNA-LGTC init
+Before=munin-node.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/bin/sna-lgtc-boot
+
+[Install]
+WantedBy=multi-user.target
