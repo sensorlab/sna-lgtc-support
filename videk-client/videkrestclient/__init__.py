@@ -62,6 +62,7 @@ class Videk:
                 json_str = '''{ "name": "''' + nodeName + '''", "loc_lat": ''' + str(self.latitude) + ''',
                 "loc_lon": ''' + str(self.longitude) + ''', "cluster": "''' + str(clusterID) + '''",
                 "cluster_name": "''' + clusterName + '''", "status": "active", "components": [] }'''
+                json_str = json_str.encode('utf8')
                 r = requests.post(self.api_url + self.nodes_url, data=json_str, headers=self.headers)
                 print r.text
                 if "error" in r.text:
