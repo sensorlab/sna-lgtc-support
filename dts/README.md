@@ -17,6 +17,9 @@ We have device trees for these hardware versions:
  * `am335x-lgtc-wired.dtb` - wireless module and wired Ethernet placed (v1.1.2)
  * `am335x-lgtc-wireless.dtb` - only the wireless module placed (v1.1.3)
 
+Compiled binary files are in the `dtb` subdirectory and are ready to use.
+Unless you want to make changes you do not need to compile from source.
+
 ## Building
 
 The `dtb` that was built using these steps was tested on the `4.4.30-ti-r64` kernel

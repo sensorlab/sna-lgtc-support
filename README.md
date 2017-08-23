@@ -7,8 +7,7 @@ microcontroller-based boards such as VESNA SNC and VESNA SNP. This repository
 contains various small software parts and documentarion related to
 SNA-LGTC:
 
- * `dts` - Device tree source.
- * `dtb` - Compiled device tree blobs.
+ * `dts` - Device tree source and compiled device tree blobs.
  * `wlconf` - Configuration for the TI WL1837 wi-fi module.
  * `bluetooth` - Using Bluetooth on WL1837.
  * `docker` - Configuration for Docker.
