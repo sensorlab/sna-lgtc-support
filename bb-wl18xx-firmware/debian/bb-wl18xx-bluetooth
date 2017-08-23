@@ -102,7 +102,7 @@ TI_AM335x_BeagleBone_Green_Wireless)
 TI_AM335x_SNA-LGTC_*)
 	bt_enable="1"
 	bt_disable="0"
-	bt_gpio_en="60"
+	bt_gpio_en="114"
 	bt_port="/dev/ttyS1"
 	bt_settings="texas 300000"
 	run_hciattach
