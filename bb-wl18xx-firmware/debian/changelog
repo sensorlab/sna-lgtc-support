@@ -1,3 +1,9 @@
+bb-wl18xx-firmware (1.20170727-0rcnee0~jessie+20170727tomaz1) unstable; urgency=medium
+
+  * Changes for SNA-LGTC
+
+ -- Tomaž Šolc <tomaz.solc@tablix.org>  Wed, 23 Aug 2017 17:29:39 +0200
+
 bb-wl18xx-firmware (1.20170727-0rcnee0~jessie+20170727) jessie; urgency=low
 
   * Rebuild for repos.rcn-ee.com
