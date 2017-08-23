@@ -51,7 +51,7 @@ Based on [Get Docker CE for Debian](https://docs.docker.com/engine/installation/
 
       {
           <any other settings, like dns>
-          "graph": "<path>"
+          "data-root": "<path>"
       }
 
   Here, `<path>` is path to a root-owned directory, usually on a mounted SD card.

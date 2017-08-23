@@ -7,7 +7,7 @@ Standards-Version: 3.9.8
 
 Package: vesna-snc-boot
 Architecture: all
-Depends: openocd, ${misc:Depends}
+Depends: openocd, systemd, ${misc:Depends}
 Description: Boot VESNA SNC over JTAG when BeagleBone boots
  This package provides a systemd service that resets the JTAG interface on
  BeagleBone so that the VESNA SNC can boot at the same time as BeagleBone.

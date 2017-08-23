@@ -1,3 +1,7 @@
 /dts-v1/;
 
 #include "am335x-lgtc.dtsi"
+
+/ {
+	model = "TI AM335x SNA-LGTC Wireless";
+};
