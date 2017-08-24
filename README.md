@@ -8,14 +8,13 @@ contains various small software parts and documentarion related to
 SNA-LGTC:
 
  * `dts` - Device tree source and compiled device tree blobs.
- * `wlconf` - Configuration for the TI WL1837 wi-fi module.
- * `bluetooth` - Using Bluetooth on WL1837.
  * `docker` - Configuration for Docker.
  * `figures` - Photos and other figures related to the SNA-LGTC board.
 
 It also contains sources for several Debian packages that need to be installed
 on SNA-LGTC boards:
 
+ * `bb-wl18xx-firmware` - Customized WL1837 firmware and related scripts.
  * `sna-lgtc-boot` - First boot setup scripts for setting up hostname, machine
    ID, etc.
  * `vesna-snc-boot` - Systemd service that boots the VESNA SNC guest board
