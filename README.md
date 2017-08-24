@@ -38,7 +38,12 @@ The board will boot when one of the connectors providing power supply is
 connected (230V AC, 12V DC or the 5V supply from the USB gadget).
 
 To start, connect mini-USB cable to the USB gadget connector, bring up the USB
-network interface using DHCP and log in to 192.168.7.2 over *ssh*.
+network interface using DHCP and log in to 192.168.7.2 over *ssh*. In this
+case, no other power supply is needed.
+
+It is also possible to log in and work over the serial console. In this case,
+connect a mini-USB cable to the USB console connector and also connect another
+power supply (either 230V AC, 12V DC or 5V to the USB gadget).
 
 ![Annotated connectors on the SNA-LGTC board](figures/connectors.png)
 
@@ -48,3 +53,17 @@ In normal operation, green power LED should be lit and the blue heartbeat LED
 should be blinking periodically.
 
 ![Annotated LEDs on the SNA-LGTC board](figures/leds.png)
+
+## Buttons
+
+On its own, the board will boot from the SD card if it appears bootable (for
+example, if it contains a `/boot/uEnv.txt` file). If the SD card does not
+appear to be bootable, it will boot from the internal eMMC flash.
+
+Pressing the *Power* button has the same effect as running `shutdown -h now`.
+In other words, it will gracefully stop the system and power off the board.
+
+The *Reset* button however hard-reboots the board. It does not perform a
+graceful shutdown and hence using it carries the risk of filesystem corruption.
+
+![Annotated buttons on the SNA-LGTC board](figures/buttons.png)
