@@ -28,7 +28,10 @@ all: $(DTB)
 	sed -e 's/^.*:/$@:/;s/\.dts\.pre/.dts/g' $<.pre.d $<.dtc.d > $(@:.dtb=.d)
 	rm $<.pre.d $<.dtc.d $<.pre
 
+dist: $(DTB)
+	cp $(DTB) dtb
+
 clean:
 	rm -f *.dtb *.dts.tmp
 
-.PHONY: all clean
+.PHONY: all clean dist
