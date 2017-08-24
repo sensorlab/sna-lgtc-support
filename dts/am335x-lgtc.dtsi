@@ -76,6 +76,9 @@
  *
  * Serial interface is connected to UART1 (UART3 on BBGW). However, UART1 pins
  * conflict with i2c2, which is used by cape-mgr. So we need to disable that.
+ *
+ * We also need to correct the BL_EN pinmux (SNA-LGTC has it on gpio3_18, BBGW
+ * has it on gpio1_28)
  */
 
 &i2c2 {
@@ -101,11 +104,18 @@
                         0x178 (PIN_INPUT | MUX_MODE0)
 		>;
 	};
+
+	bt_pins: pinmux_bt_pins {
+		pinctrl-single,pins = <
+			/* gpio3_18 BT_EN */
+			0x1a0 (PIN_OUTPUT | MUX_MODE7)
+		>;
+	};
 };
 
 &uart1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&uart1_pins>;
+	pinctrl-0 = <&uart1_pins &bt_pins>;
 	status = "okay";
 };
 
