@@ -24,6 +24,7 @@ class Videk:
         json_str = '''{ "name": "''' + clusterName + '''", "id": "''' + clusterName + '''", "tag": null, "type": "ssh",
         "URL": null, "scan" : "false", "comment":""  }'''
         try:
+            json_str = json_str.encode('utf8')
             r = requests.post(self.api_url + self.clusters_url, data=json_str, headers=self.headers)
             print r.text
             if "error" in r.text:
@@ -178,6 +179,7 @@ class Videk:
                 json_str = '''{ "id": "''' + sensor_id + '''", "type": "''' + sensorType + '''", "quantity":
                 "''' + sensorQuantity + '''", "unit": "''' + sensorUnit + '''", "node_id": "''' + node_id + '''",
                 "node": ''' + str(nodeID) + ''' }'''
+                json_str = json_str.encode('utf8')
                 r = requests.post(self.api_url+self.sensors_url, data=json_str, headers=self.headers)
                 print r.text
             else:
