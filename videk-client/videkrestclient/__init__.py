@@ -258,7 +258,6 @@ class Videk:
             else:
                 data = r.json()
                 sensor_id = data[0]['_id']
-		print(sensor_id)
                 r = requests.delete(self.api_url + self.sensors_url + "/" + str(sensor_id), headers=self.headers)
                 print r.text
         except requests.exceptions.RequestException as e:
