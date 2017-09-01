@@ -257,8 +257,9 @@ class Videk:
                 print r.text
             else:
                 data = r.json()
-                node_id = data[0]['_id']
-                r = requests.delete(self.api_url + self.sensors_url + "/" + str(node_id), headers=self.headers)
+                sensor_id = data[0]['_id']
+		print(sensor_id)
+                r = requests.delete(self.api_url + self.sensors_url + "/" + str(sensor_id), headers=self.headers)
                 print r.text
         except requests.exceptions.RequestException as e:
             print e
