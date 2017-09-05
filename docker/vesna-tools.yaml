@@ -1,0 +1,12 @@
+image: sensorlab6/vesna-tools:latest
+manifests:
+  -
+    image: sensorlab6/vesna-tools-arm
+    platform:
+      architecture: arm
+      os: linux
+  -
+    image: sensorlab6/vesna-tools-amd64
+    platform:
+      architecture: amd64
+      os: linux
