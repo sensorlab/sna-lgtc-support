@@ -1,0 +1,35 @@
+FROM debian:jessie
+
+# File Author / Maintainer
+MAINTAINER Matevz Vucnik
+
+# Set debian frontend
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install common dependences
+RUN	apt-get update --fix-missing
+RUN	apt-get upgrade -y
+RUN	apt-get install -y apt-utils git && \
+	apt-get clean -y
+
+# Install dependences for vena drivers
+RUN 	apt-get install -y	gcc-arm-none-eabi \
+				gdb-arm-none-eabi \
+				libnewlib-arm-none-eabi \
+				devscripts && \
+	apt-get clean -y
+
+# Install dependences for vesna management system
+RUN	apt-get install -y	default-jdk \
+				ant \
+				librxtx-java && \
+	apt-get clean -y
+
+# Compile and install OpenOCD
+WORKDIR /root
+
+# "touch" commands are here to avoid occasional
+# "aclocal-1.13: command not found" errors.
+# https://stackoverflow.com/a/30386141
+RUN	apt-get install -y	openocd && \
+	apt-get clean -y
