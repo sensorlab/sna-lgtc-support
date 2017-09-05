@@ -1,16 +1,23 @@
 # Running Docker
 
-`Dockerfile` in this directory builds an `vesna-tools` image that contains
-development tools for compiling and programming firmware on the guest VESNA SNC
-board from inside a Docker container.
+Dockerfiles in this directory are used to build a `vesna-tools` image that
+contains development tools for compiling and programming firmware for the guest
+VESNA SNC board from inside a Docker container.
+
+The `vesna-tools` is a multi-architecture Docker image. There is a `Dockerfile`
+for each architecture. `amd64` is used for development of firmware on a typical
+PC. `arm` is used for compiling firmware on the SNA-LGTC boards.
 
 `vesna-tools` is not very useful on its own. It is meant to be used as a base for other
 container images, such as the [VESNA management system](https://github.com/matevzv/vesna-management-system).
-The image is also available on [Docker Hub](https://hub.docker.com/r/sensorlab6/vesna-tools/).
+A simple example containerized application using `vesna-tools` is the [Logatec temperature monitor](https://github.com/avian2/logatec-temp-monitor).
 
-## Docker ARM installation instructions
+The `vesna-tools` image is also available on [Docker Hub](https://hub.docker.com/r/sensorlab6/vesna-tools/).
+Running `docker pull` automatically pulls the image for the current architecture.
 
-Based on [Get Docker CE for Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian) from Docker Documentation.
+## Installing Docker on SNA-LGTC
+
+These instructions are based on the [Get Docker CE for Debian](https://docs.docker.com/engine/installation/linux/docker-ce/debian) section from Docker Documentation.
 
 * Uninstall old versions
 
@@ -56,7 +63,24 @@ Based on [Get Docker CE for Debian](https://docs.docker.com/engine/installation/
 
   Here, `<path>` is path to a root-owned directory, usually on a mounted SD card.
 
-## Useful Docker commands
+## Building `vesna-tools` image and pushing to Docker Hub
+
+Build the image for each platform. For example, on the SNA-LGTC board you should
+run:
+
+    $ docker build -t sensorlab6/vesna-tools-arm -f Dockerfile.arm .
+    $ docker push sensorlab6/vesna-tools-arm
+
+On a PC, use the same commands, except replace `arm` with `amd64`.
+
+When all architectures are built and pushed, you need to also push the manifest
+list file:
+
+    $ manifest-tool push from-spec vesna-tools.yaml
+
+Get and compile `manifest-tool` from [this repository](https://github.com/estesp/manifest-tool) on GitHub.
+
+## Other useful Docker commands
 
 * Build the Dockerfile in the current directory.
 
