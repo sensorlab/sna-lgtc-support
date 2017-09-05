@@ -46,6 +46,9 @@ It is also possible to log in and work over the serial console. In this case,
 connect a mini-USB cable to the USB console connector and also connect another
 power supply (either 230V AC, 12V DC or 5V to the USB gadget).
 
+If you can connect only one antenna for Wi-Fi, use connector J4. If possible,
+connect both antennas.
+
 ![Annotated connectors on the SNA-LGTC board](figures/connectors.png)
 
 ## LEDs
