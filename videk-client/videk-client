@@ -84,6 +84,9 @@ elif node_id_by_node_name != None and node_id_by_node_machine_id == None:
 else:
     node_model = node_id_by_node_name
 
+if node_model['status'] != 'active':
+    node_model_update['status'] = 'active'
+
 extra_fields = {}
 update = False
 mac_exists = False
