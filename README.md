@@ -10,6 +10,7 @@ SNA-LGTC:
  * `dts` - Device tree source and compiled device tree blobs.
  * `docker` - Configuration for Docker.
  * `figures` - Photos and other figures related to the SNA-LGTC board.
+ * `munin` - Munin plugins.
 
 It also contains sources for several Debian packages that need to be installed
 on SNA-LGTC boards:
