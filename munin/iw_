@@ -1,0 +1,80 @@
+#!/usr/bin/perl -w
+
+use strict;
+
+my $dev = $0;
+$dev =~ s/^.*iw_//;
+
+if ($ARGV[0] and $ARGV[0] eq "config") {
+	print <<END
+multigraph iw_${dev}_bitrate
+graph_title $dev bit rate
+graph_vlabel Mb/s
+graph_args --base 1000 -l 0
+graph_category wireless
+bitrate.label bit rate
+bitrate.min 0
+
+multigraph iw_${dev}_txpower
+graph_title $dev TX power
+graph_vlabel dBm
+graph_args --base 1000
+graph_category wireless
+txpower.label power
+
+multigraph iw_${dev}_linkq
+graph_title $dev link quality
+graph_vlabel quality
+graph_args --base 1000
+graph_category wireless
+linkq.label quality
+
+multigraph iw_${dev}_siglevel
+graph_title $dev signal level
+graph_vlabel dBm
+graph_args --base 1000
+graph_category wireless
+siglevel.label level
+END
+	;
+	exit 0;
+}
+
+my $text = `iwconfig $dev`;
+
+my $bitrate = "U";
+if ($text =~ /Bit Rate=([0-9.]+) Mb\/s/) {
+	$bitrate = $1;
+}
+
+my $txpower = "U";
+if ($text =~ /Tx-Power=([0-9.]+) dBm/) {
+	$txpower = $1;
+}
+
+my $linkq = "U";
+if ($text =~ /Link Quality=([0-9]+)\//) {
+	$linkq = $1;
+}
+
+my $siglevel = "U";
+if ($text =~ /Signal level=([-0-9]+) dBm/) {
+	$siglevel = $1;
+}
+
+print <<END
+multigraph iw_${dev}_bitrate
+bitrate.value $bitrate
+
+multigraph iw_${dev}_txpower
+txpower.value $txpower
+
+multigraph iw_${dev}_linkq
+linkq.value $linkq
+
+multigraph iw_${dev}_siglevel
+siglevel.value $siglevel
+END
+;
+
+exit 0;
