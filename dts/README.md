@@ -22,8 +22,10 @@ Unless you want to make changes you do not need to compile from source.
 
 ## Building
 
-The `dtb` that was built using these steps was tested on the `4.4.30-ti-r64` kernel
-that ships with the `bone-debian-8.6-seeed-iot-armhf-2016-11-06-4gb.img` image.
+The `dtb` that was built using these steps was tested on the following kernels:
+
+ * `4.4.30-ti-r64` (ships with the `bone-debian-8.6-seeed-iot-armhf-2016-11-06-4gb.img` image)
+ * `4.4.87-ti-r121`
 
 Requirements:
 
@@ -31,6 +33,8 @@ Requirements:
 
 Prepare the kernel tree (run on the top of the kernel source):
 
+    $ cp arch/arm/configs/bb.org_defconfig .config
+    $ make ARCH=arm olddefconfig
     $ make ARCH=arm CROSS_COMPILE=arm-none-eabi- scripts
 
 The build the `dtb` here with:
@@ -41,9 +45,10 @@ Where `KERNEL` should point to the top of the kernel tree.
 
 ## Installation
 
-Copy the appropriate `dtb` file into `/boot/dtbs/4.4.30-ti-r64/` on SNA-LGTC.
-Change owner to `root`. The `/boot/uEnv.txt` file should contain the name of
-the `dtb` file to use. For example:
+Copy the appropriate `dtb` file into `/boot/dtbs/<version>/` on SNA-LGTC
+(replace `<version>` with the kernel version you are currently using, e.g.
+`4.4.87-ti-r121`). Change owner to `root`. The `/boot/uEnv.txt` file should
+contain the name of the `dtb` file to use. For example:
 
     dtb=am335x-lgtc-wireless.dtb
 
