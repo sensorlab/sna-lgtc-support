@@ -15,8 +15,8 @@ CPP_FLAGS = 	-nostdinc \
 		-undef -D__DTS__
 
 DTC_FLAGS =	-i$(KERNEL)/arch/arm/boot/dts \
-		-b 0 -@
-		#-Wno-unit_address_vs_reg
+		-b 0 -@ \
+		-Wno-unit_address_vs_reg
 
 all: $(DTB)
 
