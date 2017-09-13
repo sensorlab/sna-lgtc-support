@@ -72,3 +72,55 @@ The *Reset* button however hard-reboots the board. It does not perform a
 graceful shutdown and hence using it carries the risk of filesystem corruption.
 
 ![Annotated buttons on the SNA-LGTC board](figures/buttons.png)
+
+## Initial OS setup
+
+Get an SD card image. You can find it on the internal *PUB_OE6* share, under
+`tsolc/SNA-LGTC`. Images files are named like `bone-debian-8.6-sna-lgtc-2017-09-12.img.bz2`.
+
+You will need a computer running Linux and an SD card reader.
+
+Download the image to your computer. Then decompress it. Adjust the name of the
+image if necessary in the following steps:
+
+    $ bzip2 -d bone-debian-8.6-sna-lgtc-2017-09-12.img.bz2
+
+After that, insert an empty SD card into the reader and run. The card should be
+4 GB or larger. Adjust the name of the SD card reader device as necessary (it
+might not be `/dev/mmcblk0` on your computer):
+
+    $ sudo dd if=bone-debian-8.6-sna-lgtc-2017-09-12.img of=/dev/mmcblk0
+
+Remove and re-insert the card. Then mount it on your computer:
+
+    $ sudo mount /dev/mmcblk0p1 /mnt
+
+Check that the selected device tree matches the configuration of the SNA-LGTC
+board you are setting up (e. g. is it wired or wireless?). See the `dts` folder
+for details:
+
+    $ grep "^dtb=" /mnt/boot/uEnv.txt
+    dtb=am335x-lgtc-wired.dtb
+
+Edit the `uEnv.txt` if necessary.
+
+Now you have two choices:
+
+ * If you want to boot the SNA-LGTC board directly from the SD card, unmount
+   the card from your computer and insert it into SNA-LGTC. When you power up
+   SNA-LGTC, it should automatically boot from the SD card.
+
+ * If you want to flash the SD card image onto the on-board eMMC flash, edit
+   the `uEnv.txt` file and uncomment the following line:
+
+       cmdline=init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh
+
+   Now unmount the card from your computer and insert it into SNA-LGTC. When
+   you power up SNA-LGTC, it should start the flashing process. It will program
+   the eMMC and then turn itself off. After it has turned itself off (the power
+   LED will be dark), remove the SD card from SNA-LGTC and replace it with a
+   blank one (it will be used for storing Docker images). When you power up
+   SNA-LGTC again, it should boot from eMMC.
+
+   For more details, see [BeagleBone Black instructions](http://elinux.org/Beagleboard:BeagleBoneBlack_Debian#Flashing_eMMC)
+   and the `sna-lgtc-boot` script in this repository.
