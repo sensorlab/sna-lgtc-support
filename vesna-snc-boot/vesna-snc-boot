@@ -9,22 +9,33 @@ else
 fi
 
 OPENOCD="/usr/bin/openocd -f interface/sysfsgpio-lgtc.cfg -f target/stm32f1x.cfg"
-GPIO="/sys/class/gpio/gpio116"
+
+GPIO_BASE="/sys/class/gpio"
+
+# gpio 116 is the BC_VESNA_EN signal
+GPIO_VESNA_EN="116"
+
+# gpio 57 is the SNP1_SYS_WAKE signal
+GPIO_SYS_WAKE="57"
 
 case "$CMD" in
 	start)
-		if [ ! -d "$GPIO" ]; then
-			echo 116 > /sys/class/gpio/export
-		fi
-		echo out > "$GPIO/direction"
-		echo 1 > "$GPIO/value"
+		for GPIO in $GPIO_VESNA_EN $GPIO_SYS_WAKE; do
+			if [ ! -d "$GPIO_BASE/gpio$GPIO" ]; then
+				echo $GPIO > "$GPIO_BASE/export"
+			fi
+			echo out > "$GPIO_BASE/gpio$GPIO/direction"
+			echo 1 > "$GPIO_BASE/gpio$GPIO/value"
+		done
 
 		$OPENOCD -c "init; reset halt; poll; reset run; shutdown"
 		;;
 	stop)
 		$OPENOCD -c "init; reset halt; shutdown"
 
-		echo 0 > "$GPIO/value"
+		for GPIO in $GPIO_VESNA_EN $GPIO_SYS_WAKE; do
+			echo 0 > "$GPIO_BASE/gpio$GPIO/value"
+		done
 		;;
 	*)
 		echo "Start/stop guest VESNA SNC board"
