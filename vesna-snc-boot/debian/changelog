@@ -1,3 +1,9 @@
+vesna-snc-boot (1.2.0-1) unstable; urgency=medium
+
+  * Enable SNP1_SYS_WAKE pin on boot.
+
+ -- Tomaž Šolc <tomaz.solc@tablix.org>  Fri, 06 Oct 2017 13:34:20 +0200
+
 vesna-snc-boot (1.1.0-1) unstable; urgency=medium
 
   * Changes for SNA-LGTC.
