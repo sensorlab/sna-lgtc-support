@@ -111,6 +111,13 @@
 			0x1a0 (PIN_OUTPUT | MUX_MODE7)
 		>;
 	};
+	
+	/* SNP1_SYS_WAKE pin (GPIO1_25) */
+	U16_gpio_pin: pinmux_U16_gpio_pin {
+		pinctrl-single,pins = < 
+			0x064 ( PIN_OUTPUT | MUX_MODE7 ) 
+		>; 
+	};
 };
 
 &uart1 {
@@ -130,3 +137,6 @@
 
 /* VESNA SNC is connected to UART2 */
 #include "am335x-bone-pinmux-ttyS2.dtsi"
+/* VESNA SNPN_UWB is connected to UART4 */
+#include "am335x-bone-pinmux-ttyS4.dtsi"
+
