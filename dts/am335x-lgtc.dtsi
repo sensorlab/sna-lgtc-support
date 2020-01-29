@@ -111,13 +111,26 @@
 			0x1a0 (PIN_OUTPUT | MUX_MODE7)
 		>;
 	};
-	
+
+	i2c1_pins: pinmux_i2c1_pins {
+		pinctrl-single,pins = <
+			AM33XX_IOPAD(0x958, PIN_INPUT | MUX_MODE2) /* spi0_d1.i2c1_sda_mux3 */
+			AM33XX_IOPAD(0x95c, PIN_INPUT | MUX_MODE2) /* spi0_cs0.i2c1_scl_mux3 */
+		>;
+	};
+
 	/* SNP1_SYS_WAKE pin (GPIO1_25) */
 	U16_gpio_pin: pinmux_U16_gpio_pin {
 		pinctrl-single,pins = < 
 			0x064 ( PIN_OUTPUT | MUX_MODE7 ) 
 		>; 
 	};
+};
+
+&i2c1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&i2c1_pins>;
+	status = "okay";
 };
 
 &uart1 {
@@ -138,5 +151,5 @@
 /* VESNA SNC is connected to UART2 */
 #include "am335x-bone-pinmux-ttyS2.dtsi"
 /* VESNA SNPN_UWB is connected to UART4 */
-#include "am335x-bone-pinmux-ttyS4.dtsi"
+/* #include "am335x-bone-pinmux-ttyS4.dtsi" */
 
