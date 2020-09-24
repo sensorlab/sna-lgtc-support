@@ -1,5 +1,6 @@
 [Unit]
 Description=SNA-LGTC init
+After=generic-board-startup.service systemd-machine-id-commit.service
 
 [Service]
 Type=oneshot

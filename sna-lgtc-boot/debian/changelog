@@ -1,3 +1,9 @@
+sna-lgtc-boot (1.1.0-1) unstable; urgency=medium
+
+  * Fix systemd service start order
+
+ -- Matevz Vucnik <matevz.vucnik@ijs.si>  Thu, 24 Sep 2020 11:40:21 +0200
+
 sna-lgtc-boot (1.0.0-1) unstable; urgency=medium
 
   * Initial release.

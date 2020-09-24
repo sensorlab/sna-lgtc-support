@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+ID=`sna-lgtc-getid`
+rm /etc/machine-id
+echo "$ID" > /var/lib/dbus/machine-id
+echo "$ID" > /etc/machine-id
