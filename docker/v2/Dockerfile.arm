@@ -21,7 +21,9 @@ RUN set -ex \
 							equivs \
 	&& apt-get clean -y
 
-# Install OpenOCD
+# Compile and install OpenOCD
+WORKDIR /root
+
 # "touch" commands to avoid occasional "aclocal-1.13: command not found" errors.
 # https://stackoverflow.com/a/30386141
 RUN	git clone -b sna-lgtc https://github.com/avian2/openocd.git && \
