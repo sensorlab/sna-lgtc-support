@@ -12,6 +12,8 @@ PC. `arm` is used for compiling firmware on the SNA-LGTC boards.
 container images, such as the [VESNA management system](https://github.com/matevzv/vesna-management-system).
 A simple example containerized application using `vesna-tools` is the [Logatec temperature monitor](https://github.com/avian2/logatec-temp-monitor).
 
+Version 2 is used as a base container image for [logatec testbed experiments](https://github.com/logatec3/logatec-experiment).
+
 The `vesna-tools` image is also available on [Docker Hub](https://hub.docker.com/r/sensorlab6/vesna-tools/).
 Running `docker pull` automatically pulls the image for the current architecture.
 
