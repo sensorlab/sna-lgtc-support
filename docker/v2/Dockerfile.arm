@@ -1,0 +1,41 @@
+FROM arm32v7/ubuntu:focal
+
+# Set debian frontend
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Ljubljana
+
+# Install dependencies
+RUN set -ex \
+	&& apt-get update --fix-missing \
+	&& apt-get upgrade -y \
+	&& apt-get install -y   apt-utils \
+	&& apt-get clean -y
+					
+# Install dependencies for vena drivers
+RUN set -ex \
+	&& apt-get install -y  	git \
+							gcc-arm-none-eabi \
+							#gdb-arm-none-eabi \ 
+							libnewlib-arm-none-eabi \
+							devscripts \
+							equivs \
+	&& apt-get clean -y
+
+# Compile and install OpenOCD
+WORKDIR /root
+
+# "touch" commands to avoid occasional "aclocal-1.13: command not found" errors.
+# https://stackoverflow.com/a/30386141
+RUN	git clone -b sna-lgtc https://github.com/avian2/openocd.git && \
+	cd openocd && \
+	touch configure.ac aclocal.m4 configure && \
+	find . -name Makefile.in -exec 'touch' '{}' ';' && \
+	mk-build-deps --install -t "apt-get -y --no-install-recommends" && \
+	dpkg-buildpackage -uc -b && \
+	cd .. && \
+	dpkg -i openocd_*.deb && \
+	apt-get clean && \
+	apt-get remove -y openocd-build-deps && \
+	apt-get autoremove -y && \
+	rm -rf openocd && \
+	rm -f openocd_*.deb openocd_*.changes

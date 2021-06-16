@@ -1,0 +1,28 @@
+FROM ubuntu:focal
+
+# Set debian frontend
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Ljubljana
+
+# Install common dependencies
+RUN set -ex \
+	&& apt-get update --fix-missing \
+	&& apt-get upgrade -y \
+	&& apt-get install -y   apt-utils \
+	&& apt-get clean -y
+					
+# Install dependencies for vena drivers
+RUN set -ex \
+	&& apt-get install -y  	git \
+							gcc-arm-none-eabi \
+							#gdb-arm-none-eabi \ 
+							libnewlib-arm-none-eabi \
+							devscripts \
+							equivs \
+	&& apt-get clean -y
+
+# Install OpenOCD
+RUN	set -ex \
+	&& apt-get install -y 	openocd \
+	&& apt-get clean -y
+
